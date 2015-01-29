@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Stratford</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="style.css" type="text/css" rel="stylesheet">
+<script src="jquery.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="container_estimate">
+  <label>Estimated Number of  Resources</label>
+  <input type="text" class="resources" id="resources">
+  <label>Estimated Number of Activities</label>
+  <input type="text" class="activities" id="activities">
+  <label>Estimated Number of Discussion</label>
+  <input type="text" class="discussions" id="discussions">
+  <input type="button" value="Go" id="go">
+
+  
+</div>
+<div id="wrapper" style="display: none">
+  <div id="tables-wrapper">
+    <table id="table-left" border="0" bordercolor="#2887b9" cellpadding="5" cellspacing="2" width="100%">
+     <tr class="header">
+       <td>Weighted score for Resources (Max 2 Points)</td>
+       <td>WS for Activities (Max 5 Points)</td>
+       <td>WS for Discussion (Max 5 Points)</td>
+       <td>Sum</td>
+       <td>Conservative Score (75% of Sum)</td>
+       <td>Multiplier (80 / Conservative score)</td>       
+     </tr>
+     <tr class="rows">
+       <td id='weighted_score_resources' title="2 X Estimated Resources"></td>
+       <td id='weighted_score_activities' title="5 X Estimated Activities"></td>
+       <td id='weighted_score_discussions' title="5 X Estimated Activities"></td>
+        <td id='weighted_score' title="Weighted score of ( Activities + Resources)"></td>
+        <td id='cons_weighted_score' title="75% of Weighted score of ( Activities + Resources)"></td>
+        <td colspan="3" id ='multiplier' title="80 / Conservative score"></td>
+     </tr>
+   </table>
+  </div>
+  <div id="tree-container">
+    <div id="container_left_back"><div id="container_left"></div></div>
+    <div id="container_middle_back"><div id="container_middle"></div></div>
+    <div id="container_right_back"><div id="container_right"></div></div>
+  </div>
+  <div id="score_container">
+    <div id="main_score">
+    <div class="">Submission / View Promptness = <span></span></div>
+    <div class="">Normalised Score = <span></span></div>
+    <div class="">Add Login Bonus = <span></span></div>
+  </div>
+  <div id="student1_score" class="student_first">
+    <div class="">Submission / View Promptness = <span></span></div>   
+    <div class="">Normalised Score = <span></span></div>   
+    <div class="">Add Login Bonus = <span></span></div>
+  </div>
+  <div id="student2_score" class="student_second">
+    <div class="">Submission / View Promptness = <span></span></div>
+    <div class="">Normalised Score = <span></span></div>
+    <div class="">Add Login Bonus = <span></span></div>   
+  </div>
+  </div>
+  <div id="fruit-basket">
+      <div id="basket" class="potential" >
+        <div class="e_basket1" style="display: none"></div>
+        <div class="e_basket2" style="display: none"></div>
+        <div class="e_basket3" style="display: none"></div>
+        <div class="sum_of_basket" style="display: none"><h3></h3></div>
+    </div>
+    <div id="basket1" class="student1">
+        <div class="e_basket1" style="display: none"></div>
+        <div class="e_basket2" style="display: none"></div>
+        <div class="e_basket3" style="display: none"></div>
+        <div class="sum_of_basket" style="display: none"><h3></h3></div>
+    </div>
+    <div id="basket2" class="student2">
+        <div class="e_basket1" style="display: none"></div>
+        <div class="e_basket2" style="display: none"></div>
+        <div class="e_basket3" style="display: none"></div>
+        <div class="sum_of_basket" style="display: none"><h3></h3></div>
+    </div>
+  </div>
+  <div class='content'>
+    <div class="inner-wrapper">
+      <div class="left">
+        <div class="log-in"> Login Bonus: Max 4 </div>
+      </div>
+      <div class="middle">
+        <h3>Student1</h3>
+        <select class='loginday'>
+          <option value="0">After a Week</option>
+          <option value="4">First day login</option>
+          <option value="3">Within Second day</option>
+          <option value="2">Within a Week</option>          
+        </select>
+        <div class="red"></div>
+      </div>
+      <div class="right">
+        <h3>Student2</h3>
+        <select class='loginday'>
+          <option value="0">After a Week</option>
+          <option value="4">First day login</option>
+          <option value="3">Within Second day</option>
+          <option value="2">Within a Week</option>          
+        </select>
+        <div class="red"></div>
+      </div>
+    </div>
+
+  </div>
+
+     
+   
+  <div class="inner-wrapper" style="display:none ">          
+      <div class="left">
+      <select class='selected_particular'>
+        <option value='Add Item'>Select</option>
+        <option value="new_week">Add new week</option>
+        <option value="activity">Activity</option>
+        <option value="discussion">Discussion</option>
+        <option value="resource">Resource</option>
+      </select>
+      <div class="red"></div>
+      <input type="button" id="delete" value="Delete">
+    </div>
+    <div class="middle">
+      <select class='submission' name="submission" style="display:none ">
+        <option value='0'>Not submitted</option>
+        <option value="5">Prior to due date</option>
+        <option value="2">On due date</option>
+        <option value="1">After due date</option>
+      </select>
+      <div class="red"></div>
+      <select class='viewed' name="viewed" style="display:none ">
+        <option value="0">Resource Not Viewed</option>
+        <option value="2">Resource Viewed</option>        
+      </select>
+      <div class="red"></div>
+    </div>
+    <div class="right">
+      <select class='submission' name="submission" style="display:none ">
+        <option value='0'>Not submitted</option>
+        <option value="5">Prior to due date</option>
+        <option value="2">On due date</option>
+        <option value="1">After due date</option>
+      </select>
+      <div class="red"></div>
+      <select class='viewed' name="viewed" style="display:none ">
+        <option value="0">Resource Not Viewed</option>
+        <option value="2">Resource Viewed</option>        
+      </select>
+      <div class="red"></div>
+    </div>
+  </div>
+</div>
+<script src="js.js" type="text/javascript"></script>
+</body>
+</html>

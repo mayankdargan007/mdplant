@@ -163,7 +163,7 @@ table {
 	table-layout: fixed;
 }
 
-#container_middle, #container_right, #container_left {
+#container_1, #container_2, #container_0 {
     height: 410px;
     width: 100%;
 /*	text-align: center;
@@ -181,12 +181,12 @@ table {
     width: 30%;
     padding: 0 10px;
 }
-#container_left > img, #container_middle > img, #container_right > img {
+#container_0 > img, #container_1 > img, #container_2 > img {
     bottom: 0;
     left: 0px;
     position: absolute;
 }
-#basket, #basket1, #basket2 {
+#basket0, #basket1, #basket2 {
 	display: inline-block;
 }
 .potential, .student1, .student2 {
